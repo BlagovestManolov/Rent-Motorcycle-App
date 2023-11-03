@@ -1,0 +1,52 @@
+{% load static %}
+<nav class="fh5co-nav" role="navigation">
+			<div class="container-wrap">
+				<div class="top-menu">
+					<div class="row">
+						<div class="col-md-12 col-offset-0 text-center">
+							<div id="fh5co-logo"><a href="{% url 'home-page' %}"><img src="{% static '/images/logo.png' %}" alt="logo"
+										width="120px"></a></div>
+						</div>
+						<div class="col-md-12 col-md-offset-0 text-center menu-1">
+							<ul>
+
+<!--								Логиката за активен бутон, в зависимост от пътя, който се определя от urls.py-->
+								{% if request.path == '/' %}
+									<li class="active"><a href="{% url 'home-page' %}">Home</a></li>
+								{% else %}
+									<li ><a href="{% url 'home-page' %}">Home</a></li>
+								{%endif %}
+								{% if request.path == '/rent/' %}
+									<li class="active"><a href="{% url 'rent-page' %}">Rent</a></li>
+								{% else %}
+									<li><a href="{% url 'rent-page' %}">Rent</a></li>
+								{% endif %}
+								{% if request.path == '/tour/' %}
+									<li class="active"><a href="{% url 'tour-page' %}">Tours</a></li>
+								{% else %}
+									<li><a href="{% url 'tour-page' %}">Tours</a></li>
+								{% endif %}
+								{% if request.path == '/faq/' %}
+									<li class="active"><a href="{% url 'faq-page' %}">FAQ</a></li>
+								{% else %}
+									<li><a href="{% url 'faq-page' %}">FAQ</a></li>
+								{% endif %}
+								{% if request.path == '/blog/' %}
+									<li class="active"><a href="{% url 'blog-page' %}">Blog</a></li>
+								{% else %}
+									<li><a href="{% url 'blog-page' %}">Blog</a></li>
+								{% endif %}
+								{% if request.path == '/contact/' %}
+									<li class="active"><a href="{% url 'contact-page' %}">Contact</a></li>
+								{% else %}
+									<li><a href="{% url 'contact-page' %}">Contact</a></li>
+								{% endif %}
+<!--								Край на логиката, за активен бутон-->
+
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</nav>

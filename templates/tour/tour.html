@@ -1,0 +1,99 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <aside id="fh5co-hero">
+        <div class="flexslider">
+            <ul class="slides">
+                <li style="background-image: url({% static '/images/tours-home-image.jpg' %}); background-position: center; background-repeat: no-repeat; background-size: cover;">
+                    <div class="overlay"></div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 text-center slider-text">
+                                <div class="slider-text-inner">
+                                    <h1>Tours</h1>
+                                    <h2>Learn more about the tours we offer.</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <div id="fh5co-tours">
+        <div class="row animate-box" style="text-align: center;">
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, facere ratione, maxime ullam quasi
+                molestias sed dolorum reprehenderit at magni tempora quos dicta atque vel excepturi a rem nostrum? Quia
+                similique odit quo quae dolorum recusandae inventore quaerat illo fuga, dolore adipisci natus rerum.
+                Magni consequuntur tempore esse aliquid, amet quae similique doloribus officiis molestias sapiente nihil
+                sequi, at delectus.</p>
+            <hr>
+
+        </div>
+    </div>
+
+    {% for tour in tours %}
+        <div id="fh5co-news">
+            <div class="row animate-box">
+                <h2 style="color: #9d1a28; text-align: center;">{{ tour.name }}</h2>
+                <h3 style="text-align: center; font-weight: 700; color: gray;">{{ tour.price }} $</h3>
+                <p style="text-align: center;">{{ tour.information }}</p>
+            </div>
+            <div class="row">
+                <div class="col-md-3 animate-box">
+                    <div class="news">
+                        <a href="#" class="img-holder"><img class="img-responsive" src="{{ tour.main_image.url }}"
+                                                            alt="tour-1-1"></a>
+                    </div>
+                </div>
+                {% for image in tour.images.all|slice:":3" %}
+                    <div class="col-md-3 animate-box">
+                        <div class="news">
+                            <a href="#" class="img-holder"><img class="img-responsive" src="{{ image.image.url }}"
+                                                                alt="tour-1-2"></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="{% url 'spec-tour-page' tour.pk %}">Read More <i class="icon-arrow-right3"></i></a>
+        </div>
+        <hr>
+    {% endfor %}
+
+
+
+
+    <div id="fh5co-counter" class="fh5co-counters fh5co-light-grey">
+        <div class="text-message">
+            <h2>Contact us</h2>
+        </div>
+        <div class="center-contact">
+            <div class="row">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form.name }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                        {{ form.message }}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="submit" value="Send Message" class="btn btn-primary btn-modify">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
